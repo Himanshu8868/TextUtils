@@ -2,71 +2,99 @@
 import './App.css'; // Custom CSS file
 import Alert from './component/Alert'; // Alert component for displaying notifications
 import Navbar from './component/Navbar'; // Navbar component for navigation
-import About from './component/About'; 
+
 import TextForm from './component/TextForm'; // TextForm component for text manipulation
 import React, { useState } from 'react'; // Import React and useState hook for state management
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Updated imports for react-router-dom v6
 
 function App() {
-  const [Mode, setMode] = useState('light'); // State for light/dark mode
-  const [color, setColor] = useState('light'); // State for green mode
-  const [alert, setAlert] = useState(null); // State to manage alert notifications
+  // State to manage the dark/light mode for the app
+  const [Mode, setMode] = useState('light'); // 'light' by default
+
+  // State to manage the green mode (color state)
+  const [color, setColor] = useState('light'); // 'light' by default
+
+  // State to manage alert notifications
+  const [alert, setAlert] = useState(null);
 
   // Function to display alert messages with auto-dismiss
   const showAlert = (message, type) => {
-    setAlert({ msg: message, type: type });
-    setTimeout(() => setAlert(null), 2000); // Dismiss alert after 2 seconds
+    setAlert({
+      msg: message,
+      type: type,
+    });
+    // Alert will disappear after 2 seconds
+    setTimeout(() => {
+      setAlert(null);
+    }, 2000);
   };
 
-  // Function to toggle green mode
+  const showcolor = (message, type) => {
+    setColor({
+      msg: message,
+      type: type,
+    });
+    // Alert will disappear after 2 seconds
+    setTimeout(() => {
+      setColor(null);
+    }, 2000);
+  };
+
+  // Function to toggle between green mode and normal mode
   const colorMode = () => {
     if (color === 'light') {
-      setColor('black');
-      document.body.style.backgroundColor = 'green';
-      showAlert('Green color mode activated', 'success');
+      setColor('black'); // Set color mode to 'gray'
+      document.body.style.backgroundColor = 'green'; // Apply green background
+    showcolor('green color')
     } else {
-      setColor('light');
-      document.body.style.backgroundColor = 'white';
-      showAlert('Light color mode activated', 'success');
+      setColor('light'); // Reset to 'light'
+      document.body.style.backgroundColor = 'white'; // Apply white background
     }
   };
 
-  // Function to toggle dark mode
+  // Function to toggle between light mode and dark mode
   const toggleMode = () => {
     if (Mode === 'light') {
-      setMode('dark');
-      document.body.style.backgroundColor = '#042745';
+      setMode('dark'); // Switch to dark mode
+      document.body.style.backgroundColor = '#042745'; // Apply dark background
       showAlert('Dark mode has been activated', 'success');
-      document.title = 'Home - Dark Mode';
+      document.title = ' Home -dark mode '
     } else {
-      setMode('light');
-      document.body.style.backgroundColor = 'white';
+      setMode('light'); // Switch back to light mode
+      document.body.style.backgroundColor = 'white'; // Apply white background
       showAlert('Light mode activated', 'success');
-      document.title = 'Homepage';
+    document.title = 'Homepage'
     }
   };
 
   return (
-    <Router>
+    <>
+      {/* Navbar component with props for title, mode, and toggling modes */}
       <Navbar
         title="TextUtils"
-        Home="Home"
-        aboutText="About"
+        Home="HomePage"
         Mode={Mode}
         toggleMode={toggleMode}
         color={color}
         colorMode={colorMode}
       />
+
+      {/* Alert component to display notifications */}
       <Alert alert={alert} />
-      <div className="container my-3">
-        <Routes>
-          <Route exact path="/about" element={<About/> } />
-          <Route exact path="/"element={<TextForm showAlert={showAlert} heading="Enter a text for Analyzing Below" Mode={Mode} />
-            }
-          />
-        </Routes>
+
+      {/* Main container for the TextForm component */}
+      <div className="container">
+        <TextForm
+          showAlert={showAlert}
+          heading="Enter a text for Analyzing Below"
+          Mode={Mode}
+        />
       </div>
-    </Router>
+
+      {/* Optional About section (commented out) */}
+      <div className="container">
+        {/* <About /> */}
+      </div>
+    </>
   );
 }
 
