@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/textUtinpm%20install%20--save%20gh-pagesls/static/css/main.dc4d6ff2.css",
+    "main.js": "/textUtinpm%20install%20--save%20gh-pagesls/static/js/main.ccdff689.js",
+    "static/js/453.ed3810f9.chunk.js": "/textUtinpm%20install%20--save%20gh-pagesls/static/js/453.ed3810f9.chunk.js",
+    "index.html": "/textUtinpm%20install%20--save%20gh-pagesls/index.html",
+    "main.dc4d6ff2.css.map": "/textUtinpm%20install%20--save%20gh-pagesls/static/css/main.dc4d6ff2.css.map",
+    "main.ccdff689.js.map": "/textUtinpm%20install%20--save%20gh-pagesls/static/js/main.ccdff689.js.map",
+    "453.ed3810f9.chunk.js.map": "/textUtinpm%20install%20--save%20gh-pagesls/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc4d6ff2.css",
+    "static/js/main.ccdff689.js"
+  ]
+}
