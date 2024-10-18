@@ -40,7 +40,7 @@ export default function TextForm(props) {
     props.showAlert('Text saved successfully!',"success");
   };
 
-  const ClearWhiteSpace = () => {
+  const handleExtraSpaces = () => {
      // New function to remove extra spaces
     updateTextHistory();
     let newText = text.replace(/\s+/g, ' ').trim(); // Remove extra spaces
@@ -93,34 +93,17 @@ export default function TextForm(props) {
           <textarea
             className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.Mode === 'dark'?'gray': 'white' ,color:  props.Mode === 'dark'?'white': 'black'}}  id="myBox"
             rows="9">
-            
           </textarea>
+          </div>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>Convert to Uppercase</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>Convert to Lowercase</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>Clear Text</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleCopyClick}>Copy Text</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={ handleSaveClick}>Remove Extra Spaces</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUndoClick}>Remove Extra Spaces</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={ handlepasteClick }>Remove Extra Spaces</button>
         </div>
-        <button className="btn btn-primary mx-2 my-3" onClick={handleUpClick}>
-          Convert to UpperCase
-        </button>
-        <button className="btn btn-primary mx-2 my-3" onClick={handleLoClick}>
-          Convert to LowerCase
-        </button>
-        <button className="btn btn-primary mx-2 my-3" onClick={handleClearClick}>
-          Clear
-        </button>
-        <button className="btn btn-primary mx-2 my-3" onClick={handleSaveClick}>
-          Save
-        </button>
-        <button className="btn btn-primary mx-2 my-3" onClick={ClearWhiteSpace}>
-          Clear Space
-        </button>
-        <button className="btn btn-primary mx-2 my-3" onClick={handleUndoClick}>
-          Undo
-        </button>
-        <button className="btn btn-primary mx-2 my-3" onClick={handleCopyClick}>
-          Copy
-        </button>
-        <button className="btn btn-primary mx-2 my-3" onClick={handlepasteClick}>
-          Paste
-        </button>
-      </div>
 
       <div className="container my-3" style={{color:  props.Mode === 'dark'?'white': 'black'}}>
 <h2>Your Text summary</h2>
