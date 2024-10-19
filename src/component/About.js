@@ -1,54 +1,45 @@
-    // import React, { useState } from 'react'
-    import React, { useEffect  , useState} from 'react';
-
-    export default function About() {
- // Change the title when the component is mounted
- useEffect(() => {
-  document.title = "About Us - it's Nothing that I can 😄";
-}, []);
-      const [myStyle , setmyStyle] =  useState(   
-        {
-         color: 'white', 
-         backgroundColor : 'black'
-        }); 
-          const [btnText , setBtnText] = useState("Enable dark mode")
+    import React  from 'react'
+    export default function About(props) {
+        
+        const myStyle = {
+          color : props.Mode === 'dark'? 'white':'black',
+          backgroundColor: props.Mode === 'dark' ? '#3c62aa' :'white'
+        }
+      //     const [btnText , setBtnText] = useState("Enable dark mode")
        
-         const toggleStyle = () => {
-                if(myStyle.color === 'white'){
-                  setmyStyle(   
-                    {
-                     color: 'black', 
-                     backgroundColor : 'white',
-                     border:' 1px solid white' 
-                    })
-                    setBtnText("Enable dark mode")
-                }
-                else {
-                  setmyStyle(   
-                    {
-                     color: 'white', 
-                     backgroundColor : 'black'
-                    })
-                    setBtnText("Enable light mode")
-                }
-       }
+      //    const toggleStyle = () => {
+      //           if(myStyle.color === 'white'){
+      //             setmyStyle(   
+      //               {
+      //                color: 'black', 
+      //                backgroundColor : 'white',
+      //                border:' 1px solid white' 
+      //               })
+      //               setBtnText("Enable dark mode")
+      //           }
+      //           else {
+      //             setmyStyle(   
+      //               {
+      //                color: 'white', 
+      //                backgroundColor : 'black'
+      //               })
+      //               setBtnText("Enable light mode")
+      //           }
+      //  }
       return (
         <div>
-             <div className="container">
-      <h1>About Us</h1>
-      <p>This is the About page of TextUtils.</p>
-    </div>
-          <div className="container" style = { myStyle}>  {/* my style is a color of our page */}
+          <div className="container" style ={myStyle}>  {/* my style is a color of our page */}
           <h1 className=' my-3' >About us </h1>
           <div className ="accordion" id="accordionExample " >
-      <div className ="accordion-item" style = { myStyle} >
+      <div className ="accordion-item" style = {myStyle} >
         <h2 className ="accordion-header">
           <button className ="accordion-button" type="button"  data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style = { myStyle}>
-            Accordion Item #1
+            <strong>Feature 1</strong>
           </button>
         </h2>
         <div id="collapseOne" className ="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-          <div className ="accordion-body">
+          <div className ="accordion-body"  style = {myStyle}>
+            
             <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
           </div>
         </div>
@@ -56,7 +47,7 @@
       <div className ="accordion-item" style = { myStyle}>
         <h2 className ="accordion-header">
           <button className ="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style = { myStyle}>
-            Accordion Item #2
+          <strong>Feature 2</strong>
           </button>
         </h2>
         <div id="collapseTwo" className ="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -68,7 +59,7 @@
     </div>
         </div>
         <div className="container" style={myStyle}>
-    <button className="btn btn-primary mx-2 my-3" onClick={toggleStyle}> {btnText} </button>  {/* Dark mode Button */}
+    {/* <button className="btn btn-primary mx-2 my-3" onClick={toggleStyle}> {btnText} </button>  Dark mode Button */}
    
     </div>
         </div> 

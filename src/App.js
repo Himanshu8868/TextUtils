@@ -1,24 +1,22 @@
 // Import necessary files and components
-import './App.css'; // Custom CSS file
-import Alert from './component/Alert'; // Alert component for displaying notifications
-import Navbar from './component/Navbar'; // Navbar component for navigation
+import './App.css'; 
+import Alert from './component/Alert'; 
+import Navbar from './component/Navbar'; 
 import About from './component/About'; 
-import TextForm from './component/TextForm'; // TextForm component for text manipulation
-import React, { useState } from 'react'; // Import React and useState hook for state management
-import { BrowserRouter as Router, Routes, Route , } from 'react-router-dom'; // Updated imports for react-router-dom v6
+import TextForm from './component/TextForm';  
+import React, { useState } from 'react'; 
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'; 
 
 function App() {
-  const [Mode, setMode] = useState('light'); // State for light/dark mode
-  const [color, setColor] = useState('light'); // State for green mode
-  const [alert, setAlert] = useState(null); // State to manage alert notifications
+  const [Mode, setMode] = useState('light');
+  const [color, setColor] = useState('light');
+  const [alert, setAlert] = useState(null);
 
-  // Function to display alert messages with auto-dismiss
   const showAlert = (message, type) => {
     setAlert({ msg: message, type: type });
-    setTimeout(() => setAlert(null), 2000); // Dismiss alert after 2 seconds
+    setTimeout(() => setAlert(null), 2000);
   };
 
-  // Function to toggle green mode
   const colorMode = () => {
     if (color === 'light') {
       setColor('black');
@@ -31,42 +29,39 @@ function App() {
     }
   };
 
-  // Function to toggle dark mode
   const toggleMode = () => {
     if (Mode === 'light') {
       setMode('dark');
       document.body.style.backgroundColor = '#042745';
       showAlert('Dark mode has been activated', 'success');
-      document.title = 'Home - Dark Mode';
     } else {
       setMode('light');
       document.body.style.backgroundColor = 'white';
       showAlert('Light mode activated', 'success');
-      document.title = 'Homepage';
     }
   };
 
   return (
-    <Router>
-      <Navbar
-        title="TextUtils"
-        Home="Home"
-        aboutText="About"
-        Mode={Mode}
-        toggleMode={toggleMode}
-        color={color}
-        colorMode={colorMode}
-      />
-      <Alert alert={alert} />
-      <div className="container my-3">
-        <Routes>
-          <Route path="/about" element={<About />} />
-          <Route path="/" element={<TextForm showAlert={showAlert} heading="Enter a text for Analyzing Below" Mode={Mode} />
-            }
-          />
-        </Routes>
-      </div>
-    </Router>
+    <>
+      <Router>
+        <Navbar
+          title="TextUtils"
+          Home="Home"
+          aboutText="About"
+          Mode={Mode}
+          toggleMode={toggleMode}
+          color={color}
+          colorMode={colorMode}
+        />
+        <Alert alert={alert} />
+        <div className="container my-3">
+          <Routes>
+            <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Try it - 😃 Enter a Text to convert uppercase to lowercase | lowercase to Uppercase and also use other features 😉" Mode={Mode} />} />
+            <Route exact path="/about" element={<About Mode={Mode} />} />
+          </Routes>
+        </div>
+      </Router>
+    </>
   );
 }
 
